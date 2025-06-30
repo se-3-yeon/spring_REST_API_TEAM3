@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.scoula.employee.mapper.EmployeeMapper">
+
+    <!-- getList -->
+<!--    <select id="getList" resultType="org.scoula.employee.domain.EmployeeVO">-->
+    <select id="getList" resultType="EmployeeVO">
+<!--        <![CDATA[-->
+<!--                select * from employee-->
+<!--                order by em_no desc-->
+<!--        ]]>-->
+        select * from employee
+    </select>
+
+    <!-- get -->
+    <select id="get" resultType="org.scoula.employee.domain.EmployeeVO">
+        select * from employee where em_no=#{emNo}
+    </select>
+
+    <!-- create -->
+    <insert id="create">
+        insert into employee (em_name, part, career)
+        values (#{emName}, #{part}, #{career})
+
+        /* 자동증가(auto_increment)로 생성된 DB의 기본키 값을
+           insert 이후에 가져와서 VO객체에 자동으로 세팅 */
+        <selectKey resultType="Long" keyProperty="emNo" keyColumn="em_no" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <!-- update -->
+    <update id="update">
+        update employee
+        set em_name = #{emName},
+            part = #{part},
+            career = #{career}
+        where em_no = #{emNo}
+    </update>
+
+    <!-- delete -->
+    <delete id="delete">
+        delete from employee where em_no=#{emNo}
+    </delete>
+
+</mapper>

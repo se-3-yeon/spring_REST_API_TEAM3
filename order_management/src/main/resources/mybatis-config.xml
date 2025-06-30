@@ -3,4 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- VO 객체의 프로퍼티명과 테이블 컬럼명 불일치 -->
+    <!-- DB 컬럼명 내 언더스코어(_) => Java 객체의 카멜케이스 필드로 자동 변환 -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+
+    <!-- Type Alias (단축 표현) -->
+    <!-- org.scoula.employee.domain.EmployeeVO => EmployeeVO -->
+    <typeAliases>
+        <package name="org.scoula.employee.domain" />
+    </typeAliases>
 </configuration>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -17,7 +18,8 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource({"classpath:/application.properties"})
-//@MapperScan(basePackages = {"org.scoula.mapper"})
+@MapperScan(basePackages = {"org.scoula.employee.mapper"})
+@ComponentScan(basePackages = {"org.scoula.employee.service"})
 public class RootConfig {
     //db사용 --> google mybatis사용 설정
     //트랜잭션 설정
